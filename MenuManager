@@ -1,1 +1,288 @@
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+public class MenuManager {
+
+    // Collection used to store all menu items
+    private ArrayList<MenuItem> menuItems;
+
+    // Constructor
+    public MenuManager() {
+        menuItems = new ArrayList<>();
+    }
+
+    // =========================================================
+    // CREATE - Add a new menu item
+    // =========================================================
+    public void addItem(MenuItem item) {
+
+        if (item == null) {
+            System.out.println("Cannot add a null menu item.");
+            return;
+        }
+
+        menuItems.add(item);
+
+        System.out.println("Menu item added successfully.");
+    }
+
+    // =========================================================
+    // READ - View all menu items
+    // =========================================================
+    public void viewItems() {
+
+        if (menuItems.isEmpty()) {
+            System.out.println("No menu items available.");
+            return;
+        }
+
+        System.out.println("\n========== MENU ITEMS ==========");
+
+        for (int i = 0; i < menuItems.size(); i++) {
+
+            System.out.println((i + 1) + ". " + menuItems.get(i));
+        }
+
+        System.out.println("================================");
+    }
+
+    // =========================================================
+    // READ - Search menu item by name
+    // =========================================================
+    public MenuItem searchItem(String name) {
+
+        if (name == null || name.trim().isEmpty()) {
+            return null;
+        }
+
+        for (MenuItem item : menuItems) {
+
+            if (item.getName().equalsIgnoreCase(name.trim())) {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+    // =========================================================
+    // READ - Search and display menu item
+    // =========================================================
+    public void searchAndDisplay(String name) {
+
+        MenuItem item = searchItem(name);
+
+        if (item != null) {
+            System.out.println("\nMenu item found:");
+            System.out.println(item);
+        } else {
+            System.out.println("Menu item not found.");
+        }
+    }
+
+    // =========================================================
+    // UPDATE - Update menu item name and price
+    // =========================================================
+    public boolean updateItem(String oldName, String newName, double newPrice) {
+
+        if (oldName == null || newName == null) {
+            return false;
+        }
+
+        if (newName.trim().isEmpty()) {
+            return false;
+        }
+
+        if (newPrice < 0) {
+            return false;
+        }
+
+        MenuItem item = searchItem(oldName);
+
+        if (item != null) {
+
+            item.setName(newName.trim());
+            item.setPrice(newPrice);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    // =========================================================
+    // UPDATE - Update only the price
+    // =========================================================
+    public boolean updatePrice(String name, double newPrice) {
+
+        if (newPrice < 0) {
+            return false;
+        }
+
+        MenuItem item = searchItem(name);
+
+        if (item != null) {
+
+            item.setPrice(newPrice);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    // =========================================================
+    // UPDATE - Update only the name
+    // =========================================================
+    public boolean updateName(String oldName, String newName) {
+
+        if (newName == null || newName.trim().isEmpty()) {
+            return false;
+        }
+
+        MenuItem item = searchItem(oldName);
+
+        if (item != null) {
+
+            item.setName(newName.trim());
+
+            return true;
+        }
+
+        return false;
+    }
+
+    // =========================================================
+    // DELETE - Delete menu item by name
+    // =========================================================
+    public boolean deleteItem(String name) {
+
+        if (name == null || name.trim().isEmpty()) {
+            return false;
+        }
+
+        for (int i = 0; i < menuItems.size(); i++) {
+
+            if (menuItems.get(i).getName().equalsIgnoreCase(name.trim())) {
+
+                menuItems.remove(i);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // =========================================================
+    // DELETE - Delete menu item by index
+    // =========================================================
+    public boolean deleteItem(int index) {
+
+        if (index < 0 || index >= menuItems.size()) {
+            return false;
+        }
+
+        menuItems.remove(index);
+
+        return true;
+    }
+
+    // =========================================================
+    // COUNT - Get number of menu items
+    // =========================================================
+    public int getItemCount() {
+
+        return menuItems.size();
+    }
+
+    // =========================================================
+    // CHECK - Check whether menu is empty
+    // =========================================================
+    public boolean isEmpty() {
+
+        return menuItems.isEmpty();
+    }
+
+    // =========================================================
+    // GET - Get a menu item by index
+    // =========================================================
+    public MenuItem getItem(int index) {
+
+        if (index < 0 || index >= menuItems.size()) {
+            return null;
+        }
+
+        return menuItems.get(index);
+    }
+
+    // =========================================================
+    // GET - Get all menu items
+    // =========================================================
+    public ArrayList<MenuItem> getMenuItems() {
+
+        return menuItems;
+    }
+
+    // =========================================================
+    // SORT - Sort menu items alphabetically by name
+    // =========================================================
+    public void sortByName() {
+
+        Collections.sort(menuItems, new Comparator<MenuItem>() {
+
+            @Override
+            public int compare(MenuItem item1, MenuItem item2) {
+
+                return item1.getName()
+                        .compareToIgnoreCase(item2.getName());
+            }
+        });
+
+        System.out.println("Menu items sorted by name.");
+    }
+
+    // =========================================================
+    // SORT - Sort menu items by price
+    // =========================================================
+    public void sortByPrice() {
+
+        Collections.sort(menuItems, new Comparator<MenuItem>() {
+
+            @Override
+            public int compare(MenuItem item1, MenuItem item2) {
+
+                return Double.compare(
+                        item1.getPrice(),
+                        item2.getPrice()
+                );
+            }
+        });
+
+        System.out.println("Menu items sorted by price.");
+    }
+
+    // =========================================================
+    // CLEAR - Remove all menu items
+    // =========================================================
+    public void clearItems() {
+
+        menuItems.clear();
+
+        System.out.println("All menu items have been removed.");
+    }
+
+    // =========================================================
+    // DISPLAY - Display menu item count
+    // =========================================================
+    public void displayItemCount() {
+
+        System.out.println(
+                "Total menu items: " + menuItems.size()
+        );
+    }
+}
+```
 
