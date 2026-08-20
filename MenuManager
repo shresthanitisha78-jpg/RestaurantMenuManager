@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class MenuManager {
 
-    // Collection of menu items
-    private ArrayList<MenuItem> menuItems;
+    // ArrayList stores all MenuItem objects
+    private final ArrayList<MenuItem> menuItems;
 
     // Constructor
     public MenuManager() {
@@ -22,7 +22,7 @@ public class MenuManager {
             return;
         }
 
-        // Check whether the ID already exists
+        // Check for duplicate ID
         if (searchItem(item.getId()) != null) {
             System.out.println("Error: Menu item with ID "
                     + item.getId() + " already exists.");
@@ -51,12 +51,13 @@ public class MenuManager {
             System.out.println("-------------------------------------");
             System.out.println("ID: " + item.getId());
             System.out.println("Name: " + item.getName());
-            System.out.println("Price: $" + String.format("%.2f", item.getPrice()));
+            System.out.println("Price: $"
+                    + String.format("%.2f", item.getPrice()));
             System.out.println("Category: " + item.getCategory());
             System.out.println("Available: "
                     + (item.isAvailable() ? "Yes" : "No"));
 
-            // Display FoodItem-specific information
+            // FoodItem-specific information
             if (item instanceof FoodItem) {
 
                 FoodItem food = (FoodItem) item;
@@ -66,7 +67,8 @@ public class MenuManager {
                         + food.getDietaryType());
 
             }
-            // Display DrinkItem-specific information
+
+            // DrinkItem-specific information
             else if (item instanceof DrinkItem) {
 
                 DrinkItem drink = (DrinkItem) item;
@@ -113,25 +115,21 @@ public class MenuManager {
             return false;
         }
 
-        // Validate name
         if (name == null || name.trim().isEmpty()) {
             System.out.println("Error: Name cannot be empty.");
             return false;
         }
 
-        // Validate price
         if (price < 0) {
             System.out.println("Error: Price cannot be negative.");
             return false;
         }
 
-        // Validate category
         if (category == null || category.trim().isEmpty()) {
             System.out.println("Error: Category cannot be empty.");
             return false;
         }
 
-        // Update shared MenuItem attributes
         item.setName(name.trim());
         item.setPrice(price);
         item.setCategory(category.trim());
@@ -166,7 +164,6 @@ public class MenuManager {
     // GET - Return All Menu Items
     // =====================================================
     public ArrayList<MenuItem> getMenuItems() {
-
         return menuItems;
     }
 
@@ -174,7 +171,6 @@ public class MenuManager {
     // GET - Number of Menu Items
     // =====================================================
     public int getItemCount() {
-
         return menuItems.size();
     }
 
@@ -182,50 +178,6 @@ public class MenuManager {
     // CHECK - Check Whether Menu Is Empty
     // =====================================================
     public boolean isEmpty() {
-
         return menuItems.isEmpty();
     }
-
-    // =====================================================
-    // DISPLAY - Display One Menu Item
-    // =====================================================
-    public void displayItem(int id) {
-
-        MenuItem item = searchItem(id);
-
-        if (item == null) {
-            System.out.println("Menu item with ID "
-                    + id + " not found.");
-            return;
-        }
-
-        System.out.println("\n========== MENU ITEM ==========");
-        System.out.println("ID: " + item.getId());
-        System.out.println("Name: " + item.getName());
-        System.out.println("Price: $"
-                + String.format("%.2f", item.getPrice()));
-        System.out.println("Category: " + item.getCategory());
-        System.out.println("Available: "
-                + (item.isAvailable() ? "Yes" : "No"));
-
-        if (item instanceof FoodItem) {
-
-            FoodItem food = (FoodItem) item;
-
-            System.out.println("Type: Food");
-            System.out.println("Dietary Type: "
-                    + food.getDietaryType());
-
-        } else if (item instanceof DrinkItem) {
-
-            DrinkItem drink = (DrinkItem) item;
-
-            System.out.println("Type: Drink");
-            System.out.println("Drink Size: "
-                    + drink.getDrinkSize());
-        }
-
-        System.out.println("===============================");
-    }
 }
-
