@@ -1,0 +1,12 @@
+FOOD|1|Chicken Burger|12.50|Main|true|Halal
+FOOD|2|Vegetable Pizza|15.00|Main|true|Vegetarian
+FOOD|3|Chicken Salad|10.50|Healthy|true|High Protein
+FOOD|4|Beef Steak|28.00|Main|true|Halal
+FOOD|5|Pasta Alfredo|18.50|Main|true|Vegetarian
+FOOD|6|Fish and Chips|16.00|Main|true|Pescatarian
+DRINK|7|Coca Cola|4.00|Drinks|true|Large
+DRINK|8|Coffee|5.50|Drinks|true|Medium
+DRINK|9|Orange Juice|6.00|Drinks|true|Large
+DRINK|10|Milkshake|8.50|Drinks|true|Large
+DRINK|11|Green Tea|4.50|Drinks|true|Small
+DRINK|12|Mineral Water|3.00|Drinks|true|Medium
