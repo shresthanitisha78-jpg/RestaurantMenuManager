@@ -15,6 +15,7 @@ public class MenuManager {
     // =====================================================
     // CREATE - Add Menu Item
     // =====================================================
+
     public void addItem(MenuItem item) {
 
         if (item == null) {
@@ -22,10 +23,13 @@ public class MenuManager {
             return;
         }
 
-        // Check for duplicate ID
+        // Prevent duplicate IDs
         if (searchItem(item.getId()) != null) {
-            System.out.println("Error: Menu item with ID "
-                    + item.getId() + " already exists.");
+            System.out.println(
+                    "Error: Menu item with ID "
+                            + item.getId()
+                            + " already exists."
+            );
             return;
         }
 
@@ -37,6 +41,7 @@ public class MenuManager {
     // =====================================================
     // READ - View All Menu Items
     // =====================================================
+
     public void viewItems() {
 
         if (menuItems.isEmpty()) {
@@ -47,6 +52,7 @@ public class MenuManager {
         System.out.println("\n========== RESTAURANT MENU ==========");
 
         for (MenuItem item : menuItems) {
+
             System.out.println("-------------------------------------");
             System.out.println(item.getDetails());
         }
@@ -55,8 +61,9 @@ public class MenuManager {
     }
 
     // =====================================================
-    // READ - Search Menu Item by ID
+    // SEARCH - Search Menu Item by ID
     // =====================================================
+
     public MenuItem searchItem(int id) {
 
         for (MenuItem item : menuItems) {
@@ -70,8 +77,9 @@ public class MenuManager {
     }
 
     // =====================================================
-    // UPDATE - Update Menu Item by ID
+    // UPDATE - Update Menu Item
     // =====================================================
+
     public boolean updateItem(
             int id,
             String name,
@@ -82,8 +90,11 @@ public class MenuManager {
         MenuItem item = searchItem(id);
 
         if (item == null) {
-            System.out.println("Menu item with ID "
-                    + id + " not found.");
+            System.out.println(
+                    "Menu item with ID "
+                            + id
+                            + " not found."
+            );
             return false;
         }
 
@@ -113,15 +124,19 @@ public class MenuManager {
     }
 
     // =====================================================
-    // DELETE - Delete Menu Item by ID
+    // DELETE - Delete Menu Item
     // =====================================================
+
     public boolean deleteItem(int id) {
 
         MenuItem item = searchItem(id);
 
         if (item == null) {
-            System.out.println("Menu item with ID "
-                    + id + " not found.");
+            System.out.println(
+                    "Menu item with ID "
+                            + id
+                            + " not found."
+            );
             return false;
         }
 
@@ -133,22 +148,25 @@ public class MenuManager {
     }
 
     // =====================================================
-    // GET - Return All Menu Items
+    // GET - Return Menu Items
     // =====================================================
+
     public ArrayList<MenuItem> getMenuItems() {
         return menuItems;
     }
 
     // =====================================================
-    // GET - Number of Menu Items
+    // GET - Number of Items
     // =====================================================
+
     public int getItemCount() {
         return menuItems.size();
     }
 
     // =====================================================
-    // CHECK - Check Whether Menu Is Empty
+    // CHECK - Empty Menu
     // =====================================================
+
     public boolean isEmpty() {
         return menuItems.isEmpty();
     }
