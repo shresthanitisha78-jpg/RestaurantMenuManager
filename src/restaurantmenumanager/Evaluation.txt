@@ -1,0 +1,6 @@
+1,1,5,Excellent food quality and taste
+2,2,4,Very good pizza and fresh vegetables
+3,3,5,Healthy and delicious
+4,4,2,Too much sugar
+5,5,4,Good coffee
+6,6,3,Fresh but slightly expensive
